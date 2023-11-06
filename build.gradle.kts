@@ -27,6 +27,8 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
+	runtimeOnly("com.h2database:h2")
+	runtimeOnly("io.r2dbc:r2dbc-h2")
 }
 
 tasks.withType<KotlinCompile> {
