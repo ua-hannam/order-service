@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.web.reactive.function.server.body
 
 @Component
 class OrderHandler(
@@ -41,6 +42,16 @@ class OrderHandler(
 
     fun findAllOrderItems(serverRequest: ServerRequest) =
             orderItemService.findAllOrderItems()
+                    .collectList()
+                    .flatMap {
+                        ServerResponse
+                                .ok()
+                                .body(BodyInserters.fromValue(it))
+                    }
+
+    fun findOrderItemsByOrderId(serverRequest: ServerRequest) =
+            orderItemService.findAllOrderItemsByOrderId(
+                    serverRequest.pathVariable("orderId").toLong())
                     .collectList()
                     .flatMap {
                         ServerResponse

@@ -29,4 +29,6 @@ class OrderItemService(
     }
 
     fun findAllOrderItems() = orderItemRepository.findAll()
+
+    fun findAllOrderItemsByOrderId(orderId: Long) = orderItemRepository.findByOrderId(orderId)
 }

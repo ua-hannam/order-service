@@ -15,6 +15,7 @@ class RouterConfig {
             POST("/api/orders", orderHandler::saveOrder)
             GET("/api/test/orders", orderHandler::findAllOrders)
             GET("/api/test/orderItems", orderHandler::findAllOrderItems)
+            GET("/api/test/orderItems/{orderId}", orderHandler::findOrderItemsByOrderId)
         }
     }
 }
