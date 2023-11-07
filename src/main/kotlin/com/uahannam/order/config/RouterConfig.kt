@@ -16,6 +16,7 @@ class RouterConfig {
             GET("/api/test/orders", orderHandler::findAllOrders)
             GET("/api/test/orderItems", orderHandler::findAllOrderItems)
             GET("/api/test/orderItems/{orderId}", orderHandler::findOrderItemsByOrderId)
+            PATCH("/api/orders/{orderId}", orderHandler::modifyOrderStatusByOrderId)
         }
     }
 }

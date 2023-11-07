@@ -1,13 +1,14 @@
 package com.uahannam.order.handler
 
-import com.uahannam.order.domain.request.OrderRequestDto
+import com.uahannam.order.domain.request.OrderCreateRequestDto
+import com.uahannam.order.domain.request.OrderModifyRequestDto
+import com.uahannam.order.domain.statusEnum.OrderStatus
 import com.uahannam.order.service.OrderItemService
 import com.uahannam.order.service.OrderService
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
-import org.springframework.web.reactive.function.server.body
 
 @Component
 class OrderHandler(
@@ -17,7 +18,7 @@ class OrderHandler(
 
 
     fun saveOrder(serverRequest: ServerRequest) =
-            serverRequest.bodyToMono(OrderRequestDto::class.java)
+            serverRequest.bodyToMono(OrderCreateRequestDto::class.java)
                     .flatMap {
                         requestDto ->
                         orderService.saveOrder(requestDto, 1L)
@@ -57,5 +58,14 @@ class OrderHandler(
                         ServerResponse
                                 .ok()
                                 .body(BodyInserters.fromValue(it))
+                    }
+
+    fun modifyOrderStatusByOrderId(serverRequest: ServerRequest) =
+            serverRequest.bodyToMono(OrderModifyRequestDto::class.java)
+                    .flatMap {
+                        orderService.modifyOrderStatus(
+                                it.orderStatus, serverRequest.pathVariable("orderId").toLong())
+                        ServerResponse
+                                .ok().build()
                     }
 }

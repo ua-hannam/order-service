@@ -1,8 +1,6 @@
 package com.uahannam.order.domain.request
 
-import com.uahannam.order.domain.entity.OrderItem
-
-class OrderRequestDto(
+class OrderCreateRequestDto(
         var storeId: Long,
         var totalPrice: Int,
         var orderItems: List<OrderItemDto>

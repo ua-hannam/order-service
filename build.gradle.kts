@@ -29,6 +29,10 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("io.r2dbc:r2dbc-h2")
+//	implementation ("org.postgresql:postgresql")
+//	implementation ("org.postgresql:r2dbc-postgresql")
+
+
 }
 
 tasks.withType<KotlinCompile> {

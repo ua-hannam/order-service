@@ -1,8 +1,9 @@
 spring:
   r2dbc:
-    url: r2dbc:h2:mem:///test
     username: sa
     password:
+    url: r2dbc:h2:mem:///test
+
 
 logging:
   level:
