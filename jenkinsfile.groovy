@@ -15,11 +15,11 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build('192.168.45.205/uahannam/order-service')
+        app = docker.build('uahannam/order-service')
     }
 
     stage('Push image') {
-        docker.withRegistry('https://192.168.45.205', 'harbor')
+        docker.withRegistry('https://192.168.45.205/uahannam/order-service', 'harbor')
         app.push("${env.BUILD_NUMBER}")
         app.push("latest")
     }
