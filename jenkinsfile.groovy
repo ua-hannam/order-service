@@ -25,28 +25,28 @@ node {
         }
     }
 
-    post {
-        success {
-            slackSend (
-                    channel: '#build-log',
-                    color: '#00FF00',
-                    message: """
-SUCCESS 
-Job : ${env.JOB_NAME} - [#${env.BUILD_NUMBER}]
-<${env.BUILD_URL}|OPEN>
-"""
-            )
-        }
-        failure {
-            slackSend (
-                    channel: '#build-log',
-                    color: '#FF0000',
-                    message: """
-FAIL 
-- Job : ${env.JOB_NAME} - [#${env.BUILD_NUMBER}]
-<${env.BUILD_URL}|OPEN>
-"""
-            )
-        }
-    }
+//     post {
+//         success {
+//             slackSend (
+//                     channel: '#build-log',
+//                     color: '#00FF00',
+//                     message: """
+// SUCCESS 
+// Job : ${env.JOB_NAME} - [#${env.BUILD_NUMBER}]
+// <${env.BUILD_URL}|OPEN>
+// """
+//             )
+//         }
+//         failure {
+//             slackSend (
+//                     channel: '#build-log',
+//                     color: '#FF0000',
+//                     message: """
+// FAIL 
+// - Job : ${env.JOB_NAME} - [#${env.BUILD_NUMBER}]
+// <${env.BUILD_URL}|OPEN>
+// """
+//             )
+//         }
+//     }
 }
