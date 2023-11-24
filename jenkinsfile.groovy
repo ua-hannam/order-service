@@ -45,8 +45,7 @@ Job : ${env.JOB_NAME} - [#${env.BUILD_NUMBER}]
 FAIL 
 - Job : ${env.JOB_NAME} - [#${env.BUILD_NUMBER}]
 <${env.BUILD_URL}|OPEN>
-} 
-                """
+"""
             )
         }
     }
