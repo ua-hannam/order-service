@@ -5,7 +5,7 @@ node {
         checkout scm 
     }
 
-    stage('Ready') {    
+    stage('Ready') {      
         echo 'Ready to build'
         gradleHome = tool 'gradle' 
     }
