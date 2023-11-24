@@ -19,7 +19,7 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('https://192.168.45.205/uahannam/order-service', 'harbor')
+        docker.withRegistry('http://211.205.161.133:8080/uahannam/order-service', 'harbor')
         app.push("${env.BUILD_NUMBER}")
         app.push("latest")
     }
