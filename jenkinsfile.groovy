@@ -13,7 +13,7 @@ node {
     stage('Build') {
         sh "${gradleHome}/bin/gradle clean build"
     }
-
+ 
     stage('Build image') {
         app = docker.build('uahannam/order-service')
     }
