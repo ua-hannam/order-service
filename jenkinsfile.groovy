@@ -14,9 +14,9 @@ node {
         sh "${gradleHome}/bin/gradle clean build"
     }
  
-    // stage('Build image') {
-    //     app = docker.build('uahannam/order-service')
-    // }
+    stage('Build image') {
+        app = docker.build('uahannam/order-service')
+    }
 
     stage('Push image') {
         docker.withRegistry('http://harbor.uahannam.io', 'harbor') {
