@@ -20,33 +20,7 @@ node {
 
     stage('Push image') {
         docker.withRegistry('http://211.205.161.133:5000', 'harbor') {
-            // app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
     }
-
-//     post {
-//         success {
-//             slackSend (
-//                     channel: '#build-log',
-//                     color: '#00FF00',
-//                     message: """
-// SUCCESS 
-// Job : ${env.JOB_NAME} - [#${env.BUILD_NUMBER}]
-// <${env.BUILD_URL}|OPEN>
-// """
-//             )
-//         }
-//         failure {
-//             slackSend (
-//                     channel: '#build-log',
-//                     color: '#FF0000',
-//                     message: """
-// FAIL 
-// - Job : ${env.JOB_NAME} - [#${env.BUILD_NUMBER}]
-// <${env.BUILD_URL}|OPEN>
-// """
-//             )
-//         }
-//     }
 }
