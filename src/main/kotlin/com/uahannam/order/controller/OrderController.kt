@@ -1,4 +1,4 @@
-package com.uahannam.order.handler
+package com.uahannam.order.controller
 
 import com.uahannam.order.domain.request.OrderCreateRequestDto
 import com.uahannam.order.domain.request.OrderModifyRequestDto
