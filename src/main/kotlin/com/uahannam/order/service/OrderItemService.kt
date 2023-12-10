@@ -4,12 +4,15 @@ import com.uahannam.order.domain.entity.OrderItem
 import com.uahannam.order.domain.request.OrderItemDto
 import com.uahannam.order.repository.OrderItemRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional(readOnly = true)
 class OrderItemService(
         private val orderItemRepository: OrderItemRepository
 ) {
 
+    @Transactional
     fun saveOrderItems(orderId: Long, orderItems: List<OrderItemDto>) {
         val orderItemList = orderItems
                 .stream()
@@ -25,10 +28,9 @@ class OrderItemService(
                 }.toList()
 
         orderItemRepository.saveAll(orderItemList)
-                .subscribe()
     }
 
-    fun findAllOrderItems() = orderItemRepository.findAll()
+    fun findAllOrderItems(): List<OrderItem> = orderItemRepository.findAll()
 
-    fun findAllOrderItemsByOrderId(orderId: Long) = orderItemRepository.findByOrderId(orderId)
+    fun findAllOrderItemsByOrderId(orderId: Long): List<OrderItem> = orderItemRepository.findByOrderId(orderId)
 }

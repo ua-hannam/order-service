@@ -1,18 +1,18 @@
 package com.uahannam.order.domain.request
 
 class OrderCreateRequestDto(
-        var storeId: Long,
-        var totalPrice: Int,
-        var orderItems: List<OrderItemDto>
+        val storeId: Long,
+        val totalPrice: Int,
+        val orderItems: List<OrderItemDto>
 ) {
 }
 
 class OrderItemDto(
-        var itemId: Long,
-        var itemName: String,
-        var itemPrice: Int,
-        var itemQuantity: Int,
-        var itemTotalPrice: Int
+        val itemId: Long,
+        val itemName: String,
+        val itemPrice: Int,
+        val itemQuantity: Int,
+        val itemTotalPrice: Int
 ) {
 
 }

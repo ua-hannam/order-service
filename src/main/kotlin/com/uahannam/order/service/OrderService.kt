@@ -5,35 +5,44 @@ import com.uahannam.order.domain.request.OrderCreateRequestDto
 import com.uahannam.order.domain.statusEnum.OrderStatus
 import com.uahannam.order.repository.OrderRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Mono
 
 @Service
+@Transactional(readOnly = true)
 class OrderService(
-        private val orderRepository: OrderRepository
+        private val orderRepository: OrderRepository,
+        private val orderItemService: OrderItemService
 ) {
 
-    fun saveOrder(orderRequest: OrderCreateRequestDto, memberId: Long): Mono<Order> {
+    @Transactional
+    fun saveOrder(orderRequest: OrderCreateRequestDto, memberId: Long): Order {
 
         // TODO: 결제 연동 필요
 
-        val order = Order(
+        var order = Order(
                 memberId = memberId,
                 storeId = orderRequest.storeId,
                 totalPrice = orderRequest.totalPrice,
-                orderStatus = "receipt"
+                orderStatus = OrderStatus.RECEIPT
         )
 
-        return orderRepository.save(order)
+        order = orderRepository.save(order)
+        orderItemService.saveOrderItems(orderId = order.orderId!!,
+            orderItems = orderRequest.orderItems)
+
+        return order
     }
 
-    fun findAllOrders() = orderRepository.findAll()
+    fun findAllOrders(): List<Order> = orderRepository.findAll()
 
-    fun modifyOrderStatus(orderStatus: OrderStatus, orderId: Long) =
-            orderRepository.findById(orderId)
-                    .flatMap {
-                        it.orderStatus = orderStatus.toString()
-                        orderRepository.save(it)
-                    }
-                    .subscribe()
+    @Transactional
+    fun modifyOrderStatus(orderStatus: OrderStatus, orderId: Long) {
+        val order = orderRepository.findById(orderId)
+            .orElseThrow()
+
+        order.updateOrderStatus(orderStatus)
+        orderRepository.save(order)
+    }
 
 }

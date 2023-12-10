@@ -1,10 +1,9 @@
 package com.uahannam.order.repository
 
 import com.uahannam.order.domain.entity.OrderItem
-import org.springframework.data.r2dbc.repository.R2dbcRepository
-import reactor.core.publisher.Flux
+import org.springframework.data.jpa.repository.JpaRepository
 
-interface OrderItemRepository: R2dbcRepository<OrderItem, Long> {
+interface OrderItemRepository: JpaRepository<OrderItem, Long> {
 
-    fun findByOrderId(orderId: Long) : Flux<OrderItem>
+    fun findByOrderId(orderId: Long) : List<OrderItem>
 }

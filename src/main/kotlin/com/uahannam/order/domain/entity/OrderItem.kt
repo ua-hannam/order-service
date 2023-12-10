@@ -1,42 +1,32 @@
 package com.uahannam.order.domain.entity
 
-import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.annotation.Id
-import org.springframework.data.annotation.LastModifiedDate
-import org.springframework.data.relational.core.mapping.Column
-import org.springframework.data.relational.core.mapping.Table
-import java.time.LocalDateTime
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
 
-@Table("ORDER_ITEM")
+
+@Entity(name = "ORDER_ITEM")
 class OrderItem(
         @Id
-        @Column("ORDER_ITEM_ID")
-        var orderItemId: Long = 0L,
+        @Column(name = "ORDER_ITEM_ID")
+        val orderItemId: Long? = null,
 
-        @Column("ORDER_ID")
-        var orderId: Long,
+        @Column(name = "ORDER_ID")
+        val orderId: Long,
 
-        @Column("ITEM_ID")
-        var itemId: Long,
+        @Column(name = "ITEM_ID")
+        val itemId: Long,
 
-        @Column("ITEM_PRICE")
-        var itemPrice: Int,
+        @Column(name = "ITEM_PRICE")
+        val itemPrice: Int,
 
-        @Column("ITEM_NAME")
-        var itemName: String,
+        @Column(name = "ITEM_NAME")
+        val itemName: String,
 
-        @Column("ITEM_QUANTITY")
-        var itemQuantity: Int,
+        @Column(name = "ITEM_QUANTITY")
+        val itemQuantity: Int,
 
-        @Column("ITEM_TOTAL_PRICE")
-        var itemTotalPrice: Int,
-
-        @CreatedDate
-        @Column("REG_DATE")
-        var regDate: LocalDateTime? = null,
-
-        @LastModifiedDate
-        @Column("MOD_DATE")
-        var modDate: LocalDateTime? = null
+        @Column(name = "ITEM_TOTAL_PRICE")
+        val itemTotalPrice: Int
 ) {
 }
