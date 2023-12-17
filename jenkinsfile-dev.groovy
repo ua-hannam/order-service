@@ -4,7 +4,7 @@ def massage = "_${env.JOB_NAME}_[#${env.BUILD_NUMBER}] <${env.BUILD_URL}|OPEN>"
 node {
     try {
     //Slack send notify - start
-    slackSend(channel: '#backend-bulid-log'', message: "*Build start(${massage})*")
+    slackSend(channel: '#backend-bulid-log', message: "*Build start(${massage})*")
         
     stage('Checkout') {
         checkout scm 
