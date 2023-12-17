@@ -20,12 +20,12 @@ node {
     }
 
     //Slack send notify - result
-    slackSend(channel: '#backend-bulid-log'', color: '#00FF00', message: """
+    slackSend(channel: '#backend-bulid-log', color: '#00FF00', message: """
 *Build successful*
 Job : ${massage}
 """)
     } catch (Exception e) {
-        slackSend(channel: '#backend-bulid-log'', color: 'danger', message: """ 
+        slackSend(channel: '#backend-bulid-log', color: 'danger', message: """ 
 *Build failed*
 Job : ${massage}
 """)
