@@ -15,8 +15,12 @@ node {
         gradleHome = tool 'gradle'   
     }
 
+    stage('SonarQube Analysis') {
+        sh "${gradleHome}/bin/gradle sonar"
+    }
+
     stage('Build') {
-        sh "${gradleHome}/bin/gradle clean build -x test"
+        sh "${gradleHome}/bin/gradle clean build"
     }
 
     //Slack send notify - result
