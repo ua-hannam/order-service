@@ -23,7 +23,7 @@ sonar {
 	properties {
 		property("sonar.projectKey", "order-service")
 		property("sonar.host.url", "http://211.205.161.133:9000")
-		property("sonar.token", "sqa_5adcdb0fef3b726db90a9ced6f8e99698fdf3da7")
+		property("sonar.token", "squ_0f19e92e663512868f0c3b4a1ce26dab141453d1")
 	}
 }
 
