@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.3"
 	kotlin("jvm") version "1.7.22"
 	kotlin("plugin.spring") version "1.7.22"  
+        id("org.sonarqube") version "4.4.1.3373"
 }  
          
 group = "com.uahannam"
@@ -16,6 +17,14 @@ java {
 
 repositories {
 	mavenCentral()
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "order-service")
+		property("sonar.host.url", "http://211.205.161.133:9000")
+		property("sonar.token", "sqa_5adcdb0fef3b726db90a9ced6f8e99698fdf3da7")
+	}
 }
 
 dependencies {
