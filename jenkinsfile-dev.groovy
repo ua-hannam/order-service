@@ -21,7 +21,7 @@ node {
 
     stage('SonarQube Analysis') {
         withSonarQubeEnv() {
-            sh "./gradlew sonar"
+            sh "./gradlew -Dsonar.login=squ_d3bfd77d128148710aadd41852ce48d5fcd078b9 sonar"
         }
     }
 
