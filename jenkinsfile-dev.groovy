@@ -20,7 +20,9 @@ node {
     }
 
     stage('SonarQube Analysis') {
-        sh "${gradleHome}/bin/gradle sonar"
+        withSonarQubeEnv() {
+            sh "./gradlew sonar"
+        }
     }
 
     //Slack send notify - result
