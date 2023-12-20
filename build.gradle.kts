@@ -21,7 +21,7 @@ repositories {
 
 sonar {
 	properties {
-		property("sonar.projectKey", "order-service")
+		property("sonar.projectKey", "ua-hannam_order-service_AYyBRA09EBpTkGCeVl3i")
 		property("sonar.host.url", "http://211.205.161.133:9000")
 		property("sonar.login", "squ_0f19e92e663512868f0c3b4a1ce26dab141453d1")
 	}
