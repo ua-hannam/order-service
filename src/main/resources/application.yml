@@ -1,8 +1,6 @@
 spring:
-  r2dbc:
-    username: sa
-    password:
-    url: r2dbc:h2:mem:///test
+  application:
+    name: order
 
 
 logging:
