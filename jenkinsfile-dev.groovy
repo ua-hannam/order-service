@@ -23,6 +23,12 @@ node {
         sh "${gradleHome}/bin/gradle clean build"
     }
 
+    stage('SonarQube Analysis') {
+        withSonarQubeEnv() {
+            sh "./gradlew -Dsonar.login=squ_d3bfd77d128148710aadd41852ce48d5fcd078b9 sonar"
+        }
+    }
+
     //Slack send notify - result
     slackSend(channel: '#bulid-log', color: '#00FF00', message: """
 *Build successful*

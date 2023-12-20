@@ -4,7 +4,8 @@ plugins {
 	id("org.springframework.boot") version "3.0.12"
 	id("io.spring.dependency-management") version "1.1.3"
 	kotlin("jvm") version "1.7.22"
-	kotlin("plugin.spring") version "1.7.22"
+	kotlin("plugin.spring") version "1.7.22"  
+  id("org.sonarqube") version "4.4.1.3373"
 	kotlin("plugin.jpa") version "1.4.32"
 }  
          
@@ -18,6 +19,14 @@ java {
 repositories {
 	mavenCentral()
 }
+
+sonar {
+	properties {
+		property("sonar.projectKey", "ua-hannam_order-service_AYyBRA09EBpTkGCeVl3i")
+		property("sonar.host.url", "http://211.205.161.133:9000")
+		property("sonar.login", "squ_d3bfd77d128148710aadd41852ce48d5fcd078b9")
+	}
+
 
 allOpen {
 	annotation("jakarta.persistence.Entity")
