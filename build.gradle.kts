@@ -23,7 +23,7 @@ sonar {
 	properties {
 		property("sonar.projectKey", "ua-hannam_order-service_AYyBRA09EBpTkGCeVl3i")
 		property("sonar.host.url", "http://211.205.161.133:9000")
-		property("sonar.login", "squ_0f19e92e663512868f0c3b4a1ce26dab141453d1")
+		property("sonar.login", "sqp_fdc1e044eba77282b7bd07039942f84d5e203bab")
 	}
 }
 
