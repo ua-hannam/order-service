@@ -1,5 +1,7 @@
 package com.uahannam.order.application.port.out
 
-interface CreateOrderPort {
+import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 
+interface CreateOrderPort {
+    fun createOrder(orderCommand: CreateOrderCommand)
 }

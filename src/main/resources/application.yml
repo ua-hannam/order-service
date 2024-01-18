@@ -3,10 +3,6 @@ spring:
     name: order
 
 
-logging:
-  level:
-    org.springframework.r2dbc: DEBUG
-
-
 server:
   port: 30001
+

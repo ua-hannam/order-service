@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 class CreateOrderService(
     private val createOrderPort: CreateOrderPort
 ) : CreateOrderUseCase {
-    override fun createOrder(orderCommand: CreateOrderCommand): Long? {
-        TODO("Not yet implemented")
+    override fun createOrder(orderCommand: CreateOrderCommand) {
+        createOrderPort.createOrder(orderCommand)
     }
 }

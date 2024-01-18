@@ -1,15 +1,19 @@
 package com.uahannam.order.adapter.out.persistence.entity
 
+import com.uahannam.order.domain.OrderStatus
 import jakarta.persistence.*
 
 @Entity(name = "ORDERS")
 class OrderJpaEntity(
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
     val orderId: Long? = null,
 
     @Column(name = "MEMBER_ID")
     val memberId: Long,
+
+    @Column(name = "ADDRESS")
+    val address: String,
 
     @Column(name = "STORE_ID")
     val storeId: Long,

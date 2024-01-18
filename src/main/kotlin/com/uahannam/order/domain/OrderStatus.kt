@@ -1,4 +1,4 @@
-package com.uahannam.order.adapter.out.persistence.entity
+package com.uahannam.order.domain
 
 enum class OrderStatus(
     val description: String

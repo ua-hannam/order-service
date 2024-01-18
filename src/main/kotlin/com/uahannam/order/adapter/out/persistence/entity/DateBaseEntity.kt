@@ -10,12 +10,12 @@ import java.time.LocalDateTime
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-class DateBaseEntity(
+abstract class DateBaseEntity(
     @CreatedDate
     @Column(name = "REG_DATE")
-    val regDate: LocalDateTime? = null,
+    var regDate: LocalDateTime? = null,
 
     @LastModifiedDate
     @Column(name = "MOD_DATE")
-    val modDate: LocalDateTime? = null
+    var modDate: LocalDateTime? = null
 )

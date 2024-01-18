@@ -1,13 +1,11 @@
 package com.uahannam.order.adapter.out.persistence.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 
 @Entity(name = "ORDER_ITEM")
 class OrderItemJpaEntity(
-        @Id
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "ORDER_ITEM_ID")
         val orderItemId: Long? = null,
 

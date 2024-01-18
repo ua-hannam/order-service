@@ -1,12 +1,10 @@
 package com.uahannam.order.adapter.out.persistence.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 @Entity(name = "ORDER_EVENT")
 class OrderEventJpaEntity(
-        @Id
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "ORDER_EVENT_ID")
         val orderEventId: Long? = null,
 
@@ -16,5 +14,4 @@ class OrderEventJpaEntity(
         @Column(name = "ORDER_ID")
         val orderId: Long,
 
-): DateBaseEntity() {
-}
+): DateBaseEntity()
