@@ -12,6 +12,8 @@ class CreateOrderService(
     private val createOrderPort: CreateOrderPort
 ) : CreateOrderUseCase {
     override fun createOrder(orderCommand: CreateOrderCommand) {
+        // TODO: 결제 연동 필요 -> 채훈님 빨리!
+
         createOrderPort.createOrder(orderCommand)
     }
 }
