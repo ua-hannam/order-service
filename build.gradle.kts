@@ -41,8 +41,9 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	testImplementation("io.mockk:mockk")
+	testImplementation("io.mockk:mockk:1.9.2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.testng:testng:7.1.0")
 	runtimeOnly("com.h2database:h2")
 }
 

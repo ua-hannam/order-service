@@ -10,6 +10,6 @@ class BaseResponse<T>(
 
     companion object {
         fun <T> ok(data: T) = BaseResponse(data, 200)
-        fun ok() = BaseResponse(null, 200)
+        fun ok(): BaseResponse<Any> = BaseResponse(null, 200)
     }
 }

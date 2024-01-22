@@ -13,7 +13,7 @@ class CreateOrderController(
 ) {
 
     @PostMapping("/api/orders")
-    fun createOrder(@RequestBody createOrderCommand: CreateOrderCommand) : BaseResponse<Nothing> {
+    fun createOrder(@RequestBody createOrderCommand: CreateOrderCommand) : BaseResponse<Any> {
         createOrderUseCase.createOrder(createOrderCommand)
         return BaseResponse.ok()
     }
