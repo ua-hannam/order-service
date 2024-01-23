@@ -5,15 +5,23 @@ import com.uahannam.order.application.port.`in`.model.CreateOrderItemCommand
 import com.uahannam.order.application.port.out.CreateOrderPort
 import com.uahannam.order.application.service.CreateOrderService
 import io.mockk.every
-import io.mockk.mockk
+import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.impl.annotations.MockK
+import io.mockk.junit5.MockKExtension
 import io.mockk.verify
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
+@ExtendWith(MockKExtension::class)
 class CreateOrderUseCaseTest {
 
-    private val createOrderPort = mockk<CreateOrderPort>()
-    private val createOrderService = CreateOrderService(createOrderPort)
+
+    @MockK
+    private lateinit var createOrderPort: CreateOrderPort
+
+    @InjectMockKs
+    private lateinit var createOrderUseCase: CreateOrderService
 
     @Test
     fun `주문 생성 정상 케이스 테스트`() {
@@ -30,13 +38,13 @@ class CreateOrderUseCaseTest {
             orderItems = itemList
         )
 
-        every { createOrderService.createOrder(orderCommand) } returns Unit
+        every { createOrderPort.createOrder(orderCommand) } returns Unit
 
         // when
-        val actualData = createOrderService.createOrder(orderCommand)
+        val actualData = createOrderUseCase.createOrder(orderCommand)
 
         // then
         Assertions.assertThat(actualData).isEqualTo(Unit)
-        verify { createOrderService.createOrder(orderCommand) }
+        verify { createOrderUseCase.createOrder(orderCommand) }
     }
 }

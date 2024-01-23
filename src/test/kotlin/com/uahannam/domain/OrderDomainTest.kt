@@ -1,5 +1,6 @@
 package com.uahannam.domain
 
+import com.uahannam.common.exception.CustomException
 import com.uahannam.order.domain.Order
 import com.uahannam.order.domain.OrderItem
 import com.uahannam.order.domain.OrderStatus
@@ -45,6 +46,6 @@ class OrderDomainTest {
 
         // then
         Assertions.assertThat(order.orderStatus).isEqualTo(OrderStatus.COOKING)
-        exception.isInstanceOf(IllegalArgumentException::class.java)
+        exception.isInstanceOf(CustomException::class.java)
     }
 }

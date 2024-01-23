@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 
 @Entity(name = "ORDER_ITEM")
-class OrderItemJpaEntity(
+data class OrderItemJpaEntity(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "ORDER_ITEM_ID")
         val orderItemId: Long? = null,
