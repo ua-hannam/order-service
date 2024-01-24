@@ -1,50 +1,34 @@
 package com.uahannam.usecase
 
+import com.appmattus.kotlinfixture.kotlinFixture
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 import com.uahannam.order.application.port.`in`.model.CreateOrderItemCommand
 import com.uahannam.order.application.port.out.CreateOrderPort
 import com.uahannam.order.application.service.CreateOrderService
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.shouldBe
 import io.mockk.every
-import io.mockk.impl.annotations.InjectMockKs
-import io.mockk.impl.annotations.MockK
-import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
 import io.mockk.verify
-import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-
-@ExtendWith(MockKExtension::class)
-class CreateOrderUseCaseTest {
 
 
-    @MockK
-    private lateinit var createOrderPort: CreateOrderPort
+private val createOrderPort = mockk<CreateOrderPort>()
+private val createOrderUseCase = CreateOrderService(createOrderPort)
+private val fixture = kotlinFixture()
 
-    @InjectMockKs
-    private lateinit var createOrderUseCase: CreateOrderService
+class CreateOrderUseCaseTest : BehaviorSpec({
 
-    @Test
-    fun `주문 생성 정상 케이스 테스트`() {
-        // given
-        val itemList = listOf(
-            CreateOrderItemCommand(1L, "서브웨이", 9500, 2, 19000),
-            CreateOrderItemCommand(3L, "버거킹", 13000, 2, 26000)
-        )
 
-        val orderCommand = CreateOrderCommand(
-            storeId = 7L,
-            totalPrice = 45000,
-            address = "서울시 마포구",
-            orderItems = itemList
-        )
-
+    Given("유저가 상품을 주문 상품을 담고, 결제가 완료된 상태에서") {
+        val orderCommand = fixture<CreateOrderCommand>()
         every { createOrderPort.createOrder(orderCommand) } returns Unit
 
-        // when
-        val actualData = createOrderUseCase.createOrder(orderCommand)
-
-        // then
-        Assertions.assertThat(actualData).isEqualTo(Unit)
-        verify { createOrderUseCase.createOrder(orderCommand) }
+        When("배달 주문을 요청하면") {
+            val actualData = createOrderUseCase.createOrder(orderCommand)
+            Then("정상적으로 주문이 생성(접수)되어야 한다") {
+                actualData shouldBe Unit
+                verify(exactly = 1) { createOrderUseCase.createOrder(orderCommand) }
+            }
+        }
     }
-}
+})

@@ -1,51 +1,52 @@
 package com.uahannam.domain
 
+import com.appmattus.kotlinfixture.kotlinFixture
 import com.uahannam.common.exception.CustomException
+import com.uahannam.common.exception.ErrorCode
 import com.uahannam.order.domain.Order
-import com.uahannam.order.domain.OrderItem
 import com.uahannam.order.domain.OrderStatus
-import com.uahannam.order.domain.Orderer
-import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Test
+import com.uahannam.order.domain.OrderStatus.*
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.shouldBe
 
-class OrderDomainTest {
+private val fixture = kotlinFixture()
 
-    @Test
-    fun `주문 취소 요청 정상 케이스 테스트`() {
-        // given
-        val order = Order(
-            orderer = Orderer("Dev Seo Rex", "010-1111-1111", "서울시 마포구"),
-            orderItem = listOf(
-                OrderItem("로세라티 치킨", 7000, 2),
-                OrderItem("서브웨이 클럽", 6500, 2)
-            ),
-            orderStatus = OrderStatus.RECEIPT
-        )
+class OrderDomainTest : BehaviorSpec({
 
-        // when
-        order.requestCancel()
 
-        // then
-        Assertions.assertThat(order.orderStatus).isEqualTo(OrderStatus.USER_CANCEL_REQUEST)
-    }
+        Given("배달 주문 접수 취소가 가능한 상황에서") {
+            val order = fixture<Order> {
+                property<Order, OrderStatus>("orderStatus") { RECEIPT }
+            }
 
-    @Test
-    fun `주문 취소 비정상 케이스 테스트 - 조리 중 취소 불가`() {
-        // given
-        val order = Order(
-            orderer = Orderer("Dev Seo Rex", "010-1111-1111", "서울시 마포구"),
-            orderItem = listOf(
-                OrderItem("로세라티 치킨", 7000, 2),
-                OrderItem("서브웨이 클럽", 6500, 2)
-            ),
-            orderStatus = OrderStatus.COOKING
-        )
 
-        // when
-        val exception = Assertions.assertThatThrownBy { order.requestCancel() }
+            When("배달 주문 접수 취소 시도를 하면") {
+                order.requestCancel()
 
-        // then
-        Assertions.assertThat(order.orderStatus).isEqualTo(OrderStatus.COOKING)
-        exception.isInstanceOf(CustomException::class.java)
-    }
-}
+
+                Then("정상적으로 취소 요청이 접수되어야 한다") {
+                    order.orderStatus shouldBe USER_CANCEL_REQUEST
+                }
+            }
+        }
+
+
+        Given("배달 주문 접수 취소가 불가능 한 상황에서") {
+            val order = fixture<Order> {
+                property<Order, OrderStatus>("orderStatus") { COOKING }
+            }
+
+            When("배달 주문 접수 취소 시도를 하면") {
+                val exception = shouldThrow<CustomException> {
+                    order.requestCancel()
+                }
+
+                Then("취소가 되지 않아야 한다") {
+                    exception.errorCode shouldBe ErrorCode.CANNOT_CANCEL_ORDER
+                }
+            }
+        }
+
+})
+
