@@ -3,9 +3,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "3.0.12"
 	id("io.spring.dependency-management") version "1.1.3"
+	id("org.sonarqube") version "4.4.1.3373"
 	kotlin("jvm") version "1.7.22"
-	kotlin("plugin.spring") version "1.7.22"  
-  id("org.sonarqube") version "4.4.1.3373"
+	kotlin("plugin.spring") version "1.7.22"
 	kotlin("plugin.jpa") version "1.4.32"
 }  
          
@@ -20,13 +20,6 @@ repositories {
 	mavenCentral()
 }
 
-sonar {
-	properties {
-		property("sonar.projectKey", "ua-hannam_order-service_AYyBRA09EBpTkGCeVl3i")
-		property("sonar.host.url", "http://211.205.161.133:9000")
-		property("sonar.login", "squ_d3bfd77d128148710aadd41852ce48d5fcd078b9")
-	}
-}
 
 
 allOpen {
@@ -46,6 +39,15 @@ dependencies {
 	testImplementation("org.testng:testng:7.1.0")
 	runtimeOnly("com.h2database:h2")
 }
+
+sonar {
+	properties {
+		property("sonar.projectKey", "ua-hannam_order-service")
+		property("sonar.organization", "msa2024")
+		property("sonar.host.url", "https://sonarcloud.io")
+	}
+}
+
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
