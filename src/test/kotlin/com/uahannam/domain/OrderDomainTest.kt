@@ -10,10 +10,11 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
-private val fixture = kotlinFixture()
+
 
 class OrderDomainTest : BehaviorSpec({
 
+     val fixture = kotlinFixture()
 
         Given("배달 주문 접수 취소가 가능한 상황에서") {
             val order = fixture<Order> {

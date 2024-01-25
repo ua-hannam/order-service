@@ -10,11 +10,13 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 
-private val fixture = kotlinFixture()
-private val loadOrderPort = mockk<LoadOrderPort>()
-private val loadOrderUseCase = LoadOrderService(loadOrderPort)
+
 
 class LoadOrderUseCaseTest : BehaviorSpec({
+
+    val fixture = kotlinFixture()
+    val loadOrderPort = mockk<LoadOrderPort>()
+    val loadOrderUseCase = LoadOrderService(loadOrderPort)
 
     Given("주문을 조회하려고 하는 경우") {
         val orderId = 1L

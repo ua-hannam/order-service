@@ -2,7 +2,6 @@ package com.uahannam.usecase
 
 import com.appmattus.kotlinfixture.kotlinFixture
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
-import com.uahannam.order.application.port.`in`.model.CreateOrderItemCommand
 import com.uahannam.order.application.port.out.CreateOrderPort
 import com.uahannam.order.application.service.CreateOrderService
 import io.kotest.core.spec.style.BehaviorSpec
@@ -12,12 +11,11 @@ import io.mockk.mockk
 import io.mockk.verify
 
 
-private val createOrderPort = mockk<CreateOrderPort>()
-private val createOrderUseCase = CreateOrderService(createOrderPort)
-private val fixture = kotlinFixture()
-
 class CreateOrderUseCaseTest : BehaviorSpec({
 
+    val createOrderPort = mockk<CreateOrderPort>()
+    val createOrderUseCase = CreateOrderService(createOrderPort)
+    val fixture = kotlinFixture()
 
     Given("유저가 상품을 주문 상품을 담고, 결제가 완료된 상태에서") {
         val orderCommand = fixture<CreateOrderCommand>()
