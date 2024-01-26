@@ -29,7 +29,7 @@ class LoadOrderUseCaseTest : BehaviorSpec({
 
             Then("일치하는 주문건이 조회되어야 한다") {
                 actualData shouldBe expectedOrderData
-                verify(exactly = 1) { loadOrderUseCase.loadOrderById(orderId) }
+                verify(exactly = 1) { loadOrderPort.loadOrderById(orderId) }
             }
         }
     }

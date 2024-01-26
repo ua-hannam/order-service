@@ -19,13 +19,13 @@ class CreateOrderUseCaseTest : BehaviorSpec({
 
     Given("유저가 상품을 주문 상품을 담고, 결제가 완료된 상태에서") {
         val orderCommand = fixture<CreateOrderCommand>()
-        every { createOrderPort.createOrder(orderCommand) } returns Unit
+        every { createOrderPort.createOrder(orderCommand) } returns 1L
 
         When("배달 주문을 요청하면") {
             val actualData = createOrderUseCase.createOrder(orderCommand)
             Then("정상적으로 주문이 생성(접수)되어야 한다") {
                 actualData shouldBe Unit
-                verify(exactly = 1) { createOrderUseCase.createOrder(orderCommand) }
+                verify(exactly = 1) { createOrderPort.createOrder(orderCommand) }
             }
         }
     }

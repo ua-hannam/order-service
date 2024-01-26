@@ -14,7 +14,7 @@ import io.kotest.matchers.shouldBe
 
 class OrderDomainTest : BehaviorSpec({
 
-     val fixture = kotlinFixture()
+        val fixture = kotlinFixture()
 
         Given("배달 주문 접수 취소가 가능한 상황에서") {
             val order = fixture<Order> {
