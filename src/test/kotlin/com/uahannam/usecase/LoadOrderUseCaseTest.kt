@@ -12,7 +12,7 @@ import io.mockk.verify
 
 
 
-class LoadOrderUseCaseTest : BehaviorSpec({
+internal class LoadOrderUseCaseTest : BehaviorSpec({
 
     val fixture = kotlinFixture()
     val loadOrderPort = mockk<LoadOrderPort>()

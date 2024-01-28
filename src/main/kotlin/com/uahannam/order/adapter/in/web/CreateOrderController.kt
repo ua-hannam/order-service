@@ -1,8 +1,9 @@
 package com.uahannam.order.adapter.`in`.web
 
-import com.uahannam.common.dto.BaseResponse
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 import com.uahannam.order.application.port.`in`.usecase.CreateOrderUseCase
+import org.springframework.http.HttpStatus.*
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -13,8 +14,9 @@ class CreateOrderController(
 ) {
 
     @PostMapping("/api/orders")
-    fun createOrder(@RequestBody createOrderCommand: CreateOrderCommand) : BaseResponse<Any> {
-        createOrderUseCase.createOrder(createOrderCommand)
-        return BaseResponse.ok()
+    fun createOrder(@RequestBody createOrderCommand: CreateOrderCommand) : ResponseEntity<Long> {
+        val orderId = createOrderUseCase.createOrder(createOrderCommand)
+        return ResponseEntity.status(CREATED)
+            .body(orderId)
     }
 }

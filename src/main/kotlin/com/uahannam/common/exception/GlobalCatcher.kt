@@ -27,7 +27,7 @@ class GlobalCatcher {
     protected fun handleNormalException(exception: Exception) =
         ResponseEntity.status(500)
             .body(ErrorResponse(
-                message = "처리 중 오류가 발생했습니다. 확인 후 다시 시도해주시기 바랍니다.",
+                message = exception.message!!,
                 timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
             )
 

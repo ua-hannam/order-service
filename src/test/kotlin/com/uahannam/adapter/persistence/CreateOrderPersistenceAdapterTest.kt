@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import
 
 @DataJpaTest
 @Import(CreateOrderPersistenceAdapter::class)
-class CreateOrderPersistenceAdapterTest(
+internal class CreateOrderPersistenceAdapterTest(
     private val orderRepository: OrderRepository,
     private val orderItemRepository: OrderItemRepository,
     private val createOrderPersistenceAdapter: CreateOrderPersistenceAdapter

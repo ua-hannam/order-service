@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import
 
 @DataJpaTest
 @Import(LoadOrderPersistenceAdapter::class, CreateOrderPersistenceAdapter::class)
-class LoadOrderPersistenceAdapterTest(
+internal class LoadOrderPersistenceAdapterTest(
     val loadOrderPersistenceAdapter: LoadOrderPersistenceAdapter,
     val createOrderPersistenceAdapter: CreateOrderPersistenceAdapter
 ) : BehaviorSpec({

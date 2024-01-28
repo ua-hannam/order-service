@@ -11,7 +11,7 @@ import io.mockk.mockk
 import io.mockk.verify
 
 
-class CreateOrderUseCaseTest : BehaviorSpec({
+internal class CreateOrderUseCaseTest : BehaviorSpec({
 
     val createOrderPort = mockk<CreateOrderPort>()
     val createOrderUseCase = CreateOrderService(createOrderPort)

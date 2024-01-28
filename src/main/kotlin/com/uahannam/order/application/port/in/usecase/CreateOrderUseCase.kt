@@ -6,5 +6,5 @@ import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 @UseCase
 interface CreateOrderUseCase {
 
-    fun createOrder(orderCommand: CreateOrderCommand)
+    fun createOrder(orderCommand: CreateOrderCommand) : Long
 }

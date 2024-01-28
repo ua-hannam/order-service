@@ -12,7 +12,7 @@ import io.kotest.matchers.shouldBe
 
 
 
-class OrderDomainTest : BehaviorSpec({
+internal class OrderDomainTest : BehaviorSpec({
 
         val fixture = kotlinFixture()
 

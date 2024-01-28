@@ -1,7 +1,7 @@
 package com.uahannam.order.adapter.`in`.web
 
-import com.uahannam.common.dto.BaseResponse
 import com.uahannam.order.application.port.`in`.usecase.LoadOrderUseCase
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -13,5 +13,5 @@ class LoadOrderController(
 
     @GetMapping("/api/orders/{orderId}")
     fun loadOrderById(@PathVariable("orderId") orderId: Long) =
-        BaseResponse.ok(loadOrderUseCase.loadOrderById(orderId))
+        ResponseEntity.ok(loadOrderUseCase.loadOrderById(orderId))
 }
