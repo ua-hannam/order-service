@@ -24,7 +24,7 @@ internal class CreateOrderUseCaseTest : BehaviorSpec({
         When("배달 주문을 요청하면") {
             val actualData = createOrderUseCase.createOrder(orderCommand)
             Then("정상적으로 주문이 생성(접수)되어야 한다") {
-                actualData shouldBe Unit
+                actualData shouldBe 1L
                 verify(exactly = 1) { createOrderPort.createOrder(orderCommand) }
             }
         }

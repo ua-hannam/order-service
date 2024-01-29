@@ -1,5 +1,6 @@
 package com.uahannam.order.adapter.`in`.web
 
+import com.uahannam.common.dto.BaseResponse
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 import com.uahannam.order.application.port.`in`.usecase.CreateOrderUseCase
 import org.springframework.http.HttpStatus.*
@@ -14,9 +15,11 @@ class CreateOrderController(
 ) {
 
     @PostMapping("/api/orders")
-    fun createOrder(@RequestBody createOrderCommand: CreateOrderCommand) : ResponseEntity<Long> {
-        val orderId = createOrderUseCase.createOrder(createOrderCommand)
-        return ResponseEntity.status(CREATED)
-            .body(orderId)
+    fun createOrder(@RequestBody createOrderCommand: CreateOrderCommand) =
+        ResponseEntity.status(CREATED)
+            .body(
+                BaseResponse(
+                    createOrderUseCase.createOrder(createOrderCommand)
+                )
+            )
     }
-}
