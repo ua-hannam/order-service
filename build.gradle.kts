@@ -51,6 +51,9 @@ dependencies {
 	testImplementation("io.kotest:kotest-assertions-core:${kotestVersion}")
 	testImplementation("io.kotest.extensions:kotest-extensions-spring:${kotestExtentionVersion}")
 
+
+	implementation("org.springframework.kafka:spring-kafka")
+	testImplementation("org.springframework.kafka:spring-kafka-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testng:testng:${testingVersion}")
 	runtimeOnly("com.h2database:h2")

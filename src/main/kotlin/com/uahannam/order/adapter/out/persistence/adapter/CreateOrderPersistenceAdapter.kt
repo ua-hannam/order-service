@@ -34,7 +34,7 @@ class CreateOrderPersistenceAdapter(
                     itemTotalPrice = it.itemTotalPrice,
                     orderId = savedOrder.orderId!!
                 )
-            }
+        }
 
         orderItemRepository.saveAll(orderItems)
 
