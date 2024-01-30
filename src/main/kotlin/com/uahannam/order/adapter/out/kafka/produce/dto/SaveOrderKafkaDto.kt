@@ -1,4 +1,4 @@
-package com.uahannam.order.adapter.out.kafka.dto
+package com.uahannam.order.adapter.out.kafka.produce.dto
 
 import com.uahannam.order.domain.OrderStatus
 import java.time.LocalDateTime
@@ -7,8 +7,7 @@ data class SaveOrderKafkaDto(
     val order: Order,
     val orderItem: List<OrderItem>,
     val orderEvent: OrderEvent
-) {
-}
+)
 
 data class Order(
     val orderId: Long,
