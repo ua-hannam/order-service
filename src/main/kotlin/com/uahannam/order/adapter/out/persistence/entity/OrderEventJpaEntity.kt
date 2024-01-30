@@ -3,7 +3,7 @@ package com.uahannam.order.adapter.out.persistence.entity
 import jakarta.persistence.*
 
 @Entity(name = "ORDER_EVENT")
-class OrderEventJpaEntity(
+data class OrderEventJpaEntity(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "ORDER_EVENT_ID")
         val orderEventId: Long? = null,

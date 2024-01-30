@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional
 class CreateOrderService(
     private val createOrderPort: CreateOrderPort
 ) : CreateOrderUseCase {
-    override fun createOrder(orderCommand: CreateOrderCommand) {
-        // TODO: 결제 연동 필요 -> 채훈님 빨리!
+    override fun createOrder(orderCommand: CreateOrderCommand) : Long {
+        // 결제 연동 필요 -> 채훈님 빨리!
 
-        createOrderPort.createOrder(orderCommand)
+        return createOrderPort.createOrder(orderCommand)
     }
 }

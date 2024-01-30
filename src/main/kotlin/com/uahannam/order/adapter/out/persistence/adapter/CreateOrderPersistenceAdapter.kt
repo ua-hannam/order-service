@@ -14,7 +14,7 @@ class CreateOrderPersistenceAdapter(
     private val orderRepository: OrderRepository,
     private val orderItemRepository: OrderItemRepository
 ) : CreateOrderPort {
-    override fun createOrder(orderCommand: CreateOrderCommand) {
+    override fun createOrder(orderCommand: CreateOrderCommand) : Long {
         val order = OrderJpaEntity(
             memberId = 1L,
             storeId = orderCommand.storeId,
@@ -37,5 +37,7 @@ class CreateOrderPersistenceAdapter(
             }
 
         orderItemRepository.saveAll(orderItems)
+
+        return savedOrder.orderId!!
     }
 }
