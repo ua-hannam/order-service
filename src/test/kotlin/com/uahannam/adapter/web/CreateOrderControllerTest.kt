@@ -46,18 +46,14 @@ internal class CreateOrderControllerTest(
 
                 it("201 응답과 주문 번호를 응답해야 한다") {
 
-                    val result = mockMvc.perform(
+                    mockMvc.perform(
                         post("/api/orders")
                             .contentType(APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(orderCommand)))
                         .andDo(print())
                         .andExpect(status().isCreated)
-                        .andReturn()
+                        .andExpect(jsonPath("$.data").value(1L))
 
-                    val expectedResult = objectMapper.writeValueAsString(BaseResponse(1L))
-                    val responseResult = result.response.contentAsString
-
-                    expectedResult shouldBe responseResult
                     verify(exactly = 1) { createOrderUseCase.createOrder(any()) }
                 }
             }

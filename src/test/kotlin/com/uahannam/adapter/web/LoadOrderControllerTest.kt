@@ -48,16 +48,16 @@ internal class LoadOrderControllerTest(
                 val orderId = 1L
 
                 it("주문이 조회 되어야 한다" ) {
-                    val result = mockMvc.perform(get("/api/orders/$orderId")
+                    val responseOrder = mockMvc.perform(get("/api/orders/$orderId")
                             .contentType(APPLICATION_JSON))
                         .andDo(print())
                         .andExpect(status().isOk)
                         .andReturn()
+                        .response.contentAsString
 
-                    val responseBody = result.response.contentAsString
-                    val expectedBody = objectMapper.writeValueAsString(BaseResponse(expectedOrder))
+                    val expectedOrderResponse = objectMapper.writeValueAsString(BaseResponse(expectedOrder))
 
-                    responseBody shouldBe expectedBody
+                    responseOrder shouldBe expectedOrderResponse
                     verify(exactly = 1) { loadOrderUseCase.loadOrderById(any()) }
 
                     }
@@ -83,7 +83,7 @@ internal class LoadOrderControllerTest(
                             .contentType(APPLICATION_JSON))
                             .andDo(print())
                             .andExpect(status().isBadRequest)
-                            .andReturn()
+                            .andExpect(jsonPath("$.serial").value("ERROR_01"))
 
                     verify(exactly = 1) { loadOrderUseCase.loadOrderById(any()) }
 
