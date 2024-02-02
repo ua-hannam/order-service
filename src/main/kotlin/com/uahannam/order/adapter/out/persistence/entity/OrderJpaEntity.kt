@@ -25,6 +25,9 @@ data class OrderJpaEntity(
     @Enumerated(EnumType.STRING)
     var orderStatus: OrderStatus,
 
+    @Column(name = "DEL_STATUS")
+    var delStatus: Boolean = false
+
     ) : DateBaseEntity() {
     fun updateOrderStatus(orderStatus: OrderStatus) {
         this.orderStatus = orderStatus

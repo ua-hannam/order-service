@@ -3,6 +3,17 @@ spring:
     name: order
 
 
+  kafka:
+    consumer:
+      bootstrap-servers: 211.205.161.133:9092
+
+    producer:
+      bootstrap-servers: 211.205.161.133:9092
+      key-serializer:
+
+  jpa:
+    show-sql: true
+
 server:
   port: 30001
 

@@ -27,7 +27,7 @@ class GlobalCatcher {
     protected fun handleNormalException(exception: Exception) =
         ResponseEntity.status(500)
             .body(ErrorResponse(
-                message = exception.message!!,
+                message = exception.toString(),
                 timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
             )
 

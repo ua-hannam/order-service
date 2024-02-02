@@ -1,15 +1,19 @@
-package com.uahannam.order.utils
+package com.uahannam.common.util
 
+import com.uahannam.common.annotation.Util
 import org.springframework.context.ApplicationEventPublisher
 
-class EventProducer {
+@Util
+class EventProducer private constructor(
+    applicationEventPublisher: ApplicationEventPublisher
+) {
+
+    init {
+        eventPublisher = applicationEventPublisher
+    }
 
     companion object {
         private lateinit var eventPublisher: ApplicationEventPublisher
-
-        fun initializeEventPublisher(eventPublisher: ApplicationEventPublisher) {
-            this.eventPublisher = eventPublisher
-        }
 
         fun produceEvent(event: Any) {
             eventPublisher.publishEvent(event)

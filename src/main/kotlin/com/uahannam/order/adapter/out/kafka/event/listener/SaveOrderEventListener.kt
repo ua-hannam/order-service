@@ -20,6 +20,9 @@ class SaveOrderEventListener(
     @EventListener(SaveOrderEventDto::class)
     fun handleSaveEvent(orderEventDto: SaveOrderEventDto) {
 
+        println("이벤트 발행 -> Order Event DTO 전송 중")
+        println("orderEventDto => $orderEventDto")
+
         // ReadModel 이벤트 발행 -> 비동기 처리
         saveOrderKafkaTemplate.send("save-order-data", createSaveOrderKafkaDto(orderEventDto))
     }
@@ -33,6 +36,7 @@ class SaveOrderEventListener(
             storeId = orderEventDto.orderJpaEntity.storeId,
             totalPrice = orderEventDto.orderJpaEntity.totalPrice,
             orderStatus = orderEventDto.orderJpaEntity.orderStatus,
+            delStatus = orderEventDto.orderJpaEntity.delStatus,
             regDate = orderEventDto.orderJpaEntity.regDate!!,
             modDate = orderEventDto.orderJpaEntity.modDate!!
         )
@@ -47,6 +51,7 @@ class SaveOrderEventListener(
                     itemName = it.itemName,
                     itemQuantity = it.itemQuantity,
                     itemTotalPrice = it.itemTotalPrice,
+                    delStatus = it.delStatus,
                     regDate = it.regDate!!,
                     modDate = it.modDate!!
                 )

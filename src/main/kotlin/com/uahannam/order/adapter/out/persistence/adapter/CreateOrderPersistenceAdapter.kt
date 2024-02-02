@@ -1,6 +1,7 @@
 package com.uahannam.order.adapter.out.persistence.adapter
 
 import com.uahannam.common.annotation.PersistenceAdapter
+import com.uahannam.common.util.EventProducer
 import com.uahannam.order.adapter.out.kafka.event.dto.SaveOrderEventDto
 import com.uahannam.order.adapter.out.persistence.entity.OrderItemJpaEntity
 import com.uahannam.order.adapter.out.persistence.entity.OrderJpaEntity
@@ -9,7 +10,6 @@ import com.uahannam.order.adapter.out.persistence.repository.OrderRepository
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 import com.uahannam.order.application.port.out.CreateOrderPort
 import com.uahannam.order.domain.OrderStatus
-import com.uahannam.order.utils.EventProducer
 
 @PersistenceAdapter
 class CreateOrderPersistenceAdapter(
@@ -22,7 +22,7 @@ class CreateOrderPersistenceAdapter(
             storeId = orderCommand.storeId,
             address = orderCommand.address,
             orderStatus = OrderStatus.RECEIPT,
-            totalPrice = orderCommand.totalPrice
+            totalPrice = orderCommand.totalPrice,
         )
 
         orderRepository.save(order)
@@ -34,12 +34,13 @@ class CreateOrderPersistenceAdapter(
                     itemQuantity = it.itemQuantity,
                     itemPrice = it.itemPrice,
                     itemTotalPrice = it.itemTotalPrice,
-                    orderId = order.orderId!!
+                    orderId = order.orderId!!,
                 )
         }
 
         orderItemRepository.saveAll(orderItems)
 
+        // 이벤트 발행 -> Read-Model 서비스 연동
         EventProducer.produceEvent(
             SaveOrderEventDto(
                 orderJpaEntity = order,

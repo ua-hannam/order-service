@@ -16,6 +16,7 @@ data class Order(
     val storeId: Long,
     val totalPrice: Int,
     val orderStatus: OrderStatus,
+    val delStatus: Boolean,
     val regDate: LocalDateTime,
     val modDate: LocalDateTime
 )
@@ -28,6 +29,7 @@ data class OrderItem(
     val itemName: String,
     val itemQuantity: Int,
     val itemTotalPrice: Int,
+    val delStatus: Boolean,
     val regDate: LocalDateTime,
     val modDate: LocalDateTime
 )
