@@ -6,14 +6,14 @@ import com.uahannam.order.adapter.out.kafka.event.dto.ModifyOrderStatusEventDto
 import com.uahannam.order.adapter.out.kafka.produce.dto.ModifyOrderStatusKafkaDto
 import com.uahannam.order.adapter.out.kafka.produce.dto.OrderEvent
 import com.uahannam.order.adapter.out.persistence.repository.OrderRepository
-import com.uahannam.order.application.port.out.ModifyOrderPort
+import com.uahannam.order.application.port.out.ModifyOrderStatusPort
 import com.uahannam.order.domain.Order
 import java.util.UUID
 
 @PersistenceAdapter
-class ModifyOrderPersistenceAdapter(
+class ModifyOrderStatusPersistenceAdapter(
     private val orderRepository: OrderRepository
-) : ModifyOrderPort {
+) : ModifyOrderStatusPort {
 
 
     override fun modifyOrderStatus(order: Order): Long {

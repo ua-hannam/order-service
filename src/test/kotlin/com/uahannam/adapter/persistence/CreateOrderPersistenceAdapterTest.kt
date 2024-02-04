@@ -13,7 +13,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.context.annotation.Import
 
 @DataJpaTest
-@Import(CreateOrderPersistenceAdapter::class, EventProducer::class)
+@Import(
+    CreateOrderPersistenceAdapter::class,
+    EventProducer::class
+)
 internal class CreateOrderPersistenceAdapterTest(
     private val orderRepository: OrderRepository,
     private val orderItemRepository: OrderItemRepository,

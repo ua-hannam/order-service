@@ -2,7 +2,7 @@ package com.uahannam.order.application.port.out
 
 import com.uahannam.order.domain.Order
 
-interface ModifyOrderPort {
+interface ModifyOrderStatusPort {
 
     fun modifyOrderStatus(order: Order) : Long
 }
