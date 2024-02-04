@@ -1,6 +1,7 @@
 package com.uahannam.adapter.persistence
 
 import com.appmattus.kotlinfixture.kotlinFixture
+import com.uahannam.common.util.EventProducer
 import com.uahannam.order.adapter.out.persistence.adapter.CreateOrderPersistenceAdapter
 import com.uahannam.order.adapter.out.persistence.repository.OrderItemRepository
 import com.uahannam.order.adapter.out.persistence.repository.OrderRepository
@@ -12,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.context.annotation.Import
 
 @DataJpaTest
-@Import(CreateOrderPersistenceAdapter::class)
+@Import(CreateOrderPersistenceAdapter::class, EventProducer::class)
 internal class CreateOrderPersistenceAdapterTest(
     private val orderRepository: OrderRepository,
     private val orderItemRepository: OrderItemRepository,

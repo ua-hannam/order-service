@@ -3,8 +3,10 @@ package com.uahannam.adapter.persistence
 import com.appmattus.kotlinfixture.kotlinFixture
 import com.uahannam.common.exception.CustomException
 import com.uahannam.common.exception.ErrorCode.*
+import com.uahannam.common.util.EventProducer
 import com.uahannam.order.adapter.out.persistence.adapter.CreateOrderPersistenceAdapter
 import com.uahannam.order.adapter.out.persistence.adapter.LoadOrderPersistenceAdapter
+import com.uahannam.order.adapter.out.persistence.mapper.OrderMapper
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 import com.uahannam.order.domain.OrderStatus.*
 import io.kotest.assertions.throwables.shouldThrow
@@ -14,7 +16,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.context.annotation.Import
 
 @DataJpaTest
-@Import(LoadOrderPersistenceAdapter::class, CreateOrderPersistenceAdapter::class)
+@Import(LoadOrderPersistenceAdapter::class, OrderMapper::class,
+    CreateOrderPersistenceAdapter::class, EventProducer::class)
 internal class LoadOrderPersistenceAdapterTest(
     val loadOrderPersistenceAdapter: LoadOrderPersistenceAdapter,
     val createOrderPersistenceAdapter: CreateOrderPersistenceAdapter
@@ -32,7 +35,7 @@ internal class LoadOrderPersistenceAdapterTest(
             Then("조회가 성공해야 한다") {
                 expectedOrder.orderer.address shouldBe orderCommand.address
                 expectedOrder.orderItem.size shouldBe orderCommand.orderItems.size
-                expectedOrder.orderStatus shouldBe RECEIPT
+                expectedOrder.orderInfo.orderStatus shouldBe RECEIPT
             }
         }
     }
