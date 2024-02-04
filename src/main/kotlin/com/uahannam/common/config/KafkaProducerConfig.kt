@@ -1,5 +1,7 @@
 package com.uahannam.common.config
 
+import com.uahannam.order.adapter.out.kafka.event.dto.ModifyOrderStatusEventDto
+import com.uahannam.order.adapter.out.kafka.produce.dto.ModifyOrderStatusKafkaDto
 import com.uahannam.order.adapter.out.kafka.produce.dto.SaveOrderKafkaDto
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
@@ -18,12 +20,30 @@ class KafkaProducerConfig(
     private val environment: Environment
 ) {
 
+    @Bean(name = ["modifyOrderStatusDataProducerFactory"])
+    fun modifyOrderStatusDataProducerFactory() : DefaultKafkaProducerFactory<String, ModifyOrderStatusKafkaDto> {
+        return DefaultKafkaProducerFactory(modifyOrderStatusDataProducerConfig())
+    }
+
+    @Bean(name = ["modifyOrderStatusDataProducerConfig"])
+    fun modifyOrderStatusDataProducerConfig() = mapOf(
+        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to environment["spring.kafka.producer.bootstrap-servers"],
+        ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
+        ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to JsonSerializer::class.java
+    )
+
+    @Bean(name = ["modifyOrderStatusKafkaTemplate"])
+    fun modifyOrderStatusKafkaTemplate() : KafkaTemplate<String, ModifyOrderStatusKafkaDto> {
+        return KafkaTemplate(modifyOrderStatusDataProducerFactory())
+    }
+
+
     @Bean(name = ["saveOrderServiceDataProducerFactory"])
     fun saveOrderServiceDataProducerFactory() : DefaultKafkaProducerFactory<String, SaveOrderKafkaDto> {
         return DefaultKafkaProducerFactory(saveOrderServiceProducerConfig())
     }
 
-    @Bean(name = ["saveOrderServiceProducerConfig"])
+    @Bean(name = ["saveOrderServiceDataProducerConfig"])
     fun saveOrderServiceProducerConfig() = mapOf(
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to environment["spring.kafka.producer.bootstrap-servers"],
         ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
