@@ -1,6 +1,5 @@
 package com.uahannam.common.config
 
-import com.uahannam.order.adapter.out.kafka.event.dto.ModifyOrderStatusEventDto
 import com.uahannam.order.adapter.out.kafka.produce.dto.ModifyOrderStatusKafkaDto
 import com.uahannam.order.adapter.out.kafka.produce.dto.SaveOrderKafkaDto
 import org.apache.kafka.clients.producer.ProducerConfig
@@ -29,7 +28,7 @@ class KafkaProducerConfig(
     fun modifyOrderStatusDataProducerConfig() = mapOf(
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to environment["spring.kafka.producer.bootstrap-servers"],
         ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
-        ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to JsonSerializer::class.java
+        ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to org.springframework.kafka.support.serializer.JsonSerializer::class.java
     )
 
     @Bean(name = ["modifyOrderStatusKafkaTemplate"])

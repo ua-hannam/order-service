@@ -25,7 +25,7 @@ class SaveOrderEventListener(
 
         // ReadModel 이벤트 발행 -> 비동기 처리
         saveOrderKafkaTemplate.send("save-order-data", createSaveOrderKafkaDto(orderEventDto))
-        saveOrderKafkaTemplate.send("save-order-data", createSaveOrderKafkaDto(orderEventDto))
+
     }
 
 
