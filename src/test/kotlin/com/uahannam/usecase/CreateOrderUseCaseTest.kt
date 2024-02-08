@@ -18,7 +18,10 @@ internal class CreateOrderUseCaseTest : BehaviorSpec({
     val fixture = kotlinFixture()
 
     Given("유저가 상품을 주문 상품을 담고, 결제가 완료된 상태에서") {
-        val orderCommand = fixture<CreateOrderCommand>()
+        val orderCommand = fixture<CreateOrderCommand> {
+            property<CreateOrderCommand, Long>("storeId") { 1L }
+            property<CreateOrderCommand, Int>("totalPrice") { 99000 }
+        }
         every { createOrderPort.createOrder(orderCommand) } returns 1L
 
         When("배달 주문을 요청하면") {
