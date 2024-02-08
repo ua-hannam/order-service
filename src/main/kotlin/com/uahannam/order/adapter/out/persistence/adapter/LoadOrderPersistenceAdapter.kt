@@ -12,8 +12,7 @@ import com.uahannam.order.domain.Order
 @PersistenceAdapter
 class LoadOrderPersistenceAdapter(
     private val orderRepository: OrderRepository,
-    private val orderItemRepository: OrderItemRepository,
-    private val orderMapper: OrderMapper,
+    private val orderItemRepository: OrderItemRepository
 ) : LoadOrderPort {
     override fun loadOrderById(orderId: Long): Order {
         val orderJpaEntity = orderRepository.findById(orderId)
@@ -21,6 +20,6 @@ class LoadOrderPersistenceAdapter(
 
         val orderItemList = orderItemRepository.findByOrderId(orderId)
 
-        return orderMapper.mapToDomainEntity(orderJpaEntity, orderItemList)
+        return OrderMapper.mapToDomainEntity(orderJpaEntity, orderItemList)
     }
 }

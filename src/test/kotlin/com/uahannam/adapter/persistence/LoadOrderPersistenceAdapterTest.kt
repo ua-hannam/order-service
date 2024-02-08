@@ -6,7 +6,6 @@ import com.uahannam.common.exception.ErrorCode.*
 import com.uahannam.common.util.EventProducer
 import com.uahannam.order.adapter.out.persistence.adapter.CreateOrderPersistenceAdapter
 import com.uahannam.order.adapter.out.persistence.adapter.LoadOrderPersistenceAdapter
-import com.uahannam.order.adapter.out.persistence.mapper.OrderMapper
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 import com.uahannam.order.domain.OrderStatus.*
 import io.kotest.assertions.throwables.shouldThrow
@@ -18,7 +17,6 @@ import org.springframework.context.annotation.Import
 @DataJpaTest
 @Import(
     LoadOrderPersistenceAdapter::class,
-    OrderMapper::class,
     CreateOrderPersistenceAdapter::class,
     EventProducer::class
 )
