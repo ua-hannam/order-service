@@ -20,9 +20,6 @@ class SaveOrderEventListener(
     @EventListener(SaveOrderEventDto::class)
     fun handleSaveEvent(orderEventDto: SaveOrderEventDto) {
 
-        println("이벤트 발행 -> Order Event DTO 전송 중")
-        println("orderEventDto => $orderEventDto")
-
         // ReadModel 이벤트 발행 -> 비동기 처리
         saveOrderKafkaTemplate.send("save-order-data", createSaveOrderKafkaDto(orderEventDto))
 
@@ -59,7 +56,7 @@ class SaveOrderEventListener(
             }.toList()
 
         val orderEvent = OrderEvent(
-            eventUUID = "1111",
+            eventUUID = UUID.randomUUID().toString(),
             orderId = order.orderId
         )
 

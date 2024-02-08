@@ -6,7 +6,6 @@ import com.uahannam.order.adapter.out.persistence.adapter.CreateOrderPersistence
 import com.uahannam.order.adapter.out.persistence.repository.OrderItemRepository
 import com.uahannam.order.adapter.out.persistence.repository.OrderRepository
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
-import com.uahannam.order.domain.OrderStatus.*
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest

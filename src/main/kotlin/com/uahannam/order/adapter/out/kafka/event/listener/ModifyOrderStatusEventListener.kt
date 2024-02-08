@@ -1,6 +1,5 @@
 package com.uahannam.order.adapter.out.kafka.event.listener
 
-import com.uahannam.order.adapter.out.kafka.event.dto.ModifyOrderStatusEventDto
 import com.uahannam.order.adapter.out.kafka.produce.dto.ModifyOrderStatusKafkaDto
 import org.springframework.context.event.EventListener
 import org.springframework.kafka.core.KafkaTemplate
