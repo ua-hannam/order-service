@@ -78,7 +78,7 @@ internal class LoadOrderControllerTest(
             context("주문 조회를 위해 존재하지 않는 주문 PK가 전달되면") {
                 val orderId = 1L
 
-                it("예외가 발생해야 한다." ) {
+                it("예외가 발생해야 한다" ) {
                     mockMvc.perform(get("/api/orders/$orderId")
                             .contentType(APPLICATION_JSON))
                             .andDo(print())

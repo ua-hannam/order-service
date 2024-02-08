@@ -42,6 +42,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.springframework.kafka:spring-kafka")
 
 	testImplementation("io.mockk:mockk:${mockkVersion}")
 	testImplementation("com.ninja-squad:springmockk:${springMockVersion}")
@@ -51,8 +52,11 @@ dependencies {
 	testImplementation("io.kotest:kotest-assertions-core:${kotestVersion}")
 	testImplementation("io.kotest.extensions:kotest-extensions-spring:${kotestExtentionVersion}")
 
+
+	testImplementation("org.springframework.kafka:spring-kafka-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testng:testng:${testingVersion}")
+
 	runtimeOnly("com.h2database:h2")
 }
 

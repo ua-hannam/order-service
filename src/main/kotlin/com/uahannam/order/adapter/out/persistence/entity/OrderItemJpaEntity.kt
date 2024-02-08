@@ -25,5 +25,8 @@ data class OrderItemJpaEntity(
         val itemQuantity: Int,
 
         @Column(name = "ITEM_TOTAL_PRICE")
-        val itemTotalPrice: Int
+        val itemTotalPrice: Int,
+
+        @Column(name = "DEL_STATUS")
+        val delStatus: Boolean = false
 ) : DateBaseEntity()

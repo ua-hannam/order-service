@@ -1,6 +1,6 @@
 package com.uahannam.order.application.port.`in`.model
 
-class CreateOrderCommand(
+data class CreateOrderCommand(
     val storeId: Long,
     val totalPrice: Int,
     val address: String,
