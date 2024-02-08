@@ -17,7 +17,7 @@ class LogAspect {
     private val logger = LoggerFactory.getLogger(LogAspect::class.java)
 
     @Pointcut("execution(* com.uahannam.order.adapter.in.web..*.*(..))")
-    fun orderServiceBeforeExecute() {}
+    fun orderServiceBeforeExecute() {  // 로깅을 위한 Target을 정하는 함수이므로 Body 불필요 }
 
     @Before("orderServiceBeforeExecute()")
     fun loggingBeforeRequest(joinPoint: JoinPoint) {

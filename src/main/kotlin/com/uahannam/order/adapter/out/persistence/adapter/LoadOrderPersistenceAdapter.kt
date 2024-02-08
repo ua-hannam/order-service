@@ -8,9 +8,6 @@ import com.uahannam.order.adapter.out.persistence.repository.OrderItemRepository
 import com.uahannam.order.adapter.out.persistence.repository.OrderRepository
 import com.uahannam.order.application.port.out.LoadOrderPort
 import com.uahannam.order.domain.Order
-import com.uahannam.order.domain.OrderInfo
-import com.uahannam.order.domain.OrderItem
-import com.uahannam.order.domain.Orderer
 
 @PersistenceAdapter
 class LoadOrderPersistenceAdapter(
