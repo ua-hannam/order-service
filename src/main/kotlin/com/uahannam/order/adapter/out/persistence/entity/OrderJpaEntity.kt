@@ -4,7 +4,7 @@ import com.uahannam.order.domain.OrderStatus
 import jakarta.persistence.*
 
 @Entity(name = "ORDERS")
-class OrderJpaEntity(
+data class OrderJpaEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
     val orderId: Long? = null,
@@ -25,8 +25,12 @@ class OrderJpaEntity(
     @Enumerated(EnumType.STRING)
     var orderStatus: OrderStatus,
 
+    @Column(name = "DEL_STATUS")
+    var delStatus: Boolean = false
+
     ) : DateBaseEntity() {
-        fun updateOrderStatus(orderStatus: OrderStatus) {
-            this.orderStatus = orderStatus
-        }
+    fun updateOrderStatus(orderStatus: OrderStatus) {
+        this.orderStatus = orderStatus
+    }
+
 }

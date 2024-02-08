@@ -1,6 +1,8 @@
 package com.uahannam.order.adapter.out.persistence.adapter
 
 import com.uahannam.common.annotation.PersistenceAdapter
+import com.uahannam.common.util.EventProducer
+import com.uahannam.order.adapter.out.kafka.event.dto.SaveOrderEventDto
 import com.uahannam.order.adapter.out.persistence.entity.OrderItemJpaEntity
 import com.uahannam.order.adapter.out.persistence.entity.OrderJpaEntity
 import com.uahannam.order.adapter.out.persistence.repository.OrderItemRepository
@@ -14,16 +16,16 @@ class CreateOrderPersistenceAdapter(
     private val orderRepository: OrderRepository,
     private val orderItemRepository: OrderItemRepository
 ) : CreateOrderPort {
-    override fun createOrder(orderCommand: CreateOrderCommand) {
+    override fun createOrder(orderCommand: CreateOrderCommand) : Long {
         val order = OrderJpaEntity(
             memberId = 1L,
             storeId = orderCommand.storeId,
             address = orderCommand.address,
             orderStatus = OrderStatus.RECEIPT,
-            totalPrice = orderCommand.totalPrice
+            totalPrice = orderCommand.totalPrice,
         )
 
-        val savedOrder = orderRepository.save(order)
+        orderRepository.save(order)
 
         val orderItems = orderCommand.orderItems.map {
                 OrderItemJpaEntity(
@@ -32,10 +34,20 @@ class CreateOrderPersistenceAdapter(
                     itemQuantity = it.itemQuantity,
                     itemPrice = it.itemPrice,
                     itemTotalPrice = it.itemTotalPrice,
-                    orderId = savedOrder.orderId!!
+                    orderId = order.orderId!!,
                 )
-            }
+        }
 
         orderItemRepository.saveAll(orderItems)
+
+        // 이벤트 발행 -> Read-Model 서비스 연동
+        EventProducer.produceEvent(
+            SaveOrderEventDto(
+                orderJpaEntity = order,
+                orderItemJpaEntityList = orderItems
+            )
+        )
+
+        return order.orderId!!
     }
 }

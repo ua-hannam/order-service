@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 
 @Entity(name = "ORDER_ITEM")
-class OrderItemJpaEntity(
+data class OrderItemJpaEntity(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "ORDER_ITEM_ID")
         val orderItemId: Long? = null,
@@ -25,5 +25,8 @@ class OrderItemJpaEntity(
         val itemQuantity: Int,
 
         @Column(name = "ITEM_TOTAL_PRICE")
-        val itemTotalPrice: Int
+        val itemTotalPrice: Int,
+
+        @Column(name = "DEL_STATUS")
+        val delStatus: Boolean = false
 ) : DateBaseEntity()
