@@ -14,6 +14,8 @@ class CreateOrderService(
     override fun createOrder(orderCommand: CreateOrderCommand) : Long {
         // 결제 연동 필요 -> 채훈님 빨리!
 
+        // 주문 데이터 유효성 검증
+        orderCommand.validate()
         return createOrderPort.createOrder(orderCommand)
     }
 }
