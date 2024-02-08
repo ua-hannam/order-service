@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component
 
 @Aspect
 @Component
-class LogAspect {
+class WebLogAspect : AbstractLogAspect() {
 
-    private val logger = LoggerFactory.getLogger(LogAspect::class.java)
+    private val logger = LoggerFactory.getLogger(WebLogAspect::class.java)
 
     @Pointcut("execution(* com.uahannam.order.adapter.in.web..*.*(..))")
     fun orderServiceBeforeExecute() {  /* 로깅을 위한 Target을 정하는 함수이므로 Body 불필요 */ }
 
     @Before("orderServiceBeforeExecute()")
     fun loggingBeforeRequest(joinPoint: JoinPoint) {
-        val method = (joinPoint.signature as MethodSignature).method
+        val method = extractMethodName(joinPoint)
 
         logger.info("${method.name}() 요청 처리 시작")
         logger.info("${method.name}() 요청 시간 => {}", CurrentTimeGenerator.generateCurrentTime())
