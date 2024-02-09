@@ -29,7 +29,7 @@ class LogAspect {
         val paramArgs = joinPoint.args
 
         for (arg in paramArgs) {
-            paramArgs?.let {
+            paramArgs.let {
                 logger.info("Parameter Type => {}", arg.javaClass.simpleName)
                 logger.info("Parameter Value => {}", arg)
             }

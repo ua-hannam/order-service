@@ -1,10 +1,10 @@
 package com.uahannam.order.adapter.out.kafka.event.listener
 
 import com.uahannam.order.adapter.out.kafka.produce.dto.ModifyOrderStatusKafkaDto
-import org.springframework.context.event.EventListener
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
+import org.springframework.transaction.event.TransactionalEventListener
 
 @Component
 class ModifyOrderStatusEventListener(
@@ -12,7 +12,7 @@ class ModifyOrderStatusEventListener(
 ) {
 
     @Async
-    @EventListener(ModifyOrderStatusKafkaDto::class)
+    @TransactionalEventListener(ModifyOrderStatusKafkaDto::class)
     fun handleModifyStatusEvent(modifyOrderStatusKafkaDto: ModifyOrderStatusKafkaDto) {
         modifyOrderStatusKafkaTemplate.send("modify-order-status", modifyOrderStatusKafkaDto)
     }

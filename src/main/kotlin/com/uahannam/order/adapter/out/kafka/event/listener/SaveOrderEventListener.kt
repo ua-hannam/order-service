@@ -5,10 +5,10 @@ import com.uahannam.order.adapter.out.kafka.produce.dto.Order
 import com.uahannam.order.adapter.out.kafka.produce.dto.OrderEvent
 import com.uahannam.order.adapter.out.kafka.produce.dto.OrderItem
 import com.uahannam.order.adapter.out.kafka.produce.dto.SaveOrderKafkaDto
-import org.springframework.context.event.EventListener
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
+import org.springframework.transaction.event.TransactionalEventListener
 import java.util.UUID
 
 @Component
@@ -17,7 +17,7 @@ class SaveOrderEventListener(
 ) {
 
     @Async
-    @EventListener(SaveOrderEventDto::class)
+    @TransactionalEventListener(SaveOrderEventDto::class)
     fun handleSaveEvent(orderEventDto: SaveOrderEventDto) {
 
         // ReadModel 이벤트 발행 -> 비동기 처리
