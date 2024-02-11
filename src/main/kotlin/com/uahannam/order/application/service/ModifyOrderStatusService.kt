@@ -2,7 +2,7 @@ package com.uahannam.order.application.service
 
 import com.uahannam.order.application.port.`in`.usecase.LoadOrderUseCase
 import com.uahannam.order.application.port.`in`.usecase.ModifyOrderStatusUseCase
-import com.uahannam.order.application.port.out.ModifyOrderStatusPort
+import com.uahannam.order.application.port.out.persistence.ModifyOrderStatusPort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

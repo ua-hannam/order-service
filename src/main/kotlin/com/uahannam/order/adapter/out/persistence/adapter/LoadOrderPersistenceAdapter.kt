@@ -6,7 +6,7 @@ import com.uahannam.common.exception.ErrorCode.*
 import com.uahannam.order.adapter.out.persistence.mapper.OrderMapper
 import com.uahannam.order.adapter.out.persistence.repository.OrderItemRepository
 import com.uahannam.order.adapter.out.persistence.repository.OrderRepository
-import com.uahannam.order.application.port.out.LoadOrderPort
+import com.uahannam.order.application.port.out.persistence.LoadOrderPort
 import com.uahannam.order.domain.Order
 
 @PersistenceAdapter

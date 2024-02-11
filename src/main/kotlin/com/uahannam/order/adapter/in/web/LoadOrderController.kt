@@ -1,6 +1,6 @@
 package com.uahannam.order.adapter.`in`.web
 
-import com.uahannam.common.dto.BaseResponse
+import com.uahannam.common.dto.base.BaseResponse
 import com.uahannam.order.application.port.`in`.usecase.LoadOrderUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
