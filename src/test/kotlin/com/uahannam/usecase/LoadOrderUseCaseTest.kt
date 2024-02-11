@@ -1,7 +1,7 @@
 package com.uahannam.usecase
 
 import com.appmattus.kotlinfixture.kotlinFixture
-import com.uahannam.order.application.port.out.LoadOrderPort
+import com.uahannam.order.application.port.out.persistence.LoadOrderPort
 import com.uahannam.order.application.service.LoadOrderService
 import com.uahannam.order.domain.Order
 import io.kotest.core.spec.style.BehaviorSpec

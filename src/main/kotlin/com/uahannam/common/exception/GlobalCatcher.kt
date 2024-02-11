@@ -1,6 +1,6 @@
 package com.uahannam.common.exception
 
-import com.uahannam.common.dto.ErrorResponse
+import com.uahannam.common.dto.base.ErrorResponse
 import com.uahannam.common.util.CurrentTimeGenerator
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -22,7 +22,8 @@ class GlobalCatcher {
         logger.error("예외 발생 시각 => {}", issuedTime)
 
         return ResponseEntity.status(errorCode.status)
-            .body(ErrorResponse(
+            .body(
+                ErrorResponse(
                 serial = errorCode.serial,
                 message = errorCode.message,
                 timestamp = issuedTime)
@@ -37,7 +38,8 @@ class GlobalCatcher {
         logger.error("예외 발생 시각 => {}", issuedTime)
 
         return ResponseEntity.status(500)
-            .body(ErrorResponse(
+            .body(
+                ErrorResponse(
                 message = exception.toString(),
                 timestamp = issuedTime)
             )
