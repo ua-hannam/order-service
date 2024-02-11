@@ -2,7 +2,7 @@ package com.uahannam.usecase
 
 import com.appmattus.kotlinfixture.kotlinFixture
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
-import com.uahannam.order.application.port.out.CreateOrderPort
+import com.uahannam.order.application.port.out.persistence.CreateOrderPort
 import com.uahannam.order.application.service.CreateOrderService
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe

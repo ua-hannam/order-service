@@ -1,7 +1,7 @@
 package com.uahannam.adapter.web
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.uahannam.common.dto.BaseResponse
+import com.uahannam.common.dto.base.BaseResponse
 import com.uahannam.common.exception.CustomException
 import com.uahannam.common.exception.ErrorCode.*
 import com.uahannam.common.exception.GlobalCatcher

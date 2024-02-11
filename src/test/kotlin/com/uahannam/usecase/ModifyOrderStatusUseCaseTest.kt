@@ -4,7 +4,7 @@ import com.appmattus.kotlinfixture.kotlinFixture
 import com.uahannam.common.exception.CustomException
 import com.uahannam.common.exception.ErrorCode.*
 import com.uahannam.order.application.port.`in`.usecase.LoadOrderUseCase
-import com.uahannam.order.application.port.out.ModifyOrderStatusPort
+import com.uahannam.order.application.port.out.persistence.ModifyOrderStatusPort
 import com.uahannam.order.application.service.ModifyOrderStatusService
 import com.uahannam.order.domain.Order
 import com.uahannam.order.domain.OrderInfo

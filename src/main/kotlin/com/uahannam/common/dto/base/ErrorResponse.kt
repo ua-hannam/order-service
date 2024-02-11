@@ -1,4 +1,4 @@
-package com.uahannam.common.dto
+package com.uahannam.common.dto.base
 
 import com.fasterxml.jackson.annotation.JsonInclude
 

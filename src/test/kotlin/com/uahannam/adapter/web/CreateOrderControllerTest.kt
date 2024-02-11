@@ -2,7 +2,7 @@ package com.uahannam.adapter.web
 
 import com.appmattus.kotlinfixture.kotlinFixture
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.uahannam.common.dto.BaseResponse
+import com.uahannam.common.dto.base.BaseResponse
 import com.uahannam.order.adapter.`in`.web.CreateOrderController
 import com.uahannam.order.application.port.`in`.model.CreateOrderCommand
 import com.uahannam.order.application.port.`in`.usecase.CreateOrderUseCase

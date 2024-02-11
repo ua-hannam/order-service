@@ -1,19 +1,19 @@
-package com.uahannam.order.adapter.out.kafka.event.listener
+package com.uahannam.common.event.listener
 
-import com.uahannam.order.adapter.out.kafka.produce.dto.ModifyOrderStatusKafkaDto
-import org.springframework.kafka.core.KafkaTemplate
+import com.uahannam.order.adapter.out.messaging.produce.dto.ModifyOrderStatusKafkaDto
+import com.uahannam.order.adapter.out.messaging.producer.ModifyOrderStatusMessagingAdapter
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
 import org.springframework.transaction.event.TransactionalEventListener
 
 @Component
 class ModifyOrderStatusEventListener(
-    private val modifyOrderStatusKafkaTemplate: KafkaTemplate<String, ModifyOrderStatusKafkaDto>
+    private val modifyOrderStatusMessagingAdapter: ModifyOrderStatusMessagingAdapter
 ) {
 
     @Async
     @TransactionalEventListener(ModifyOrderStatusKafkaDto::class)
     fun handleModifyStatusEvent(modifyOrderStatusKafkaDto: ModifyOrderStatusKafkaDto) {
-        modifyOrderStatusKafkaTemplate.send("modify-order-status", modifyOrderStatusKafkaDto)
+        modifyOrderStatusMessagingAdapter.sendModifyOrderStatusMessage(modifyOrderStatusKafkaDto)
     }
 }

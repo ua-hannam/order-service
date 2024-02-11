@@ -1,15 +1,15 @@
-package com.uahannam.order.adapter.out.kafka.produce.dto
+package com.uahannam.order.adapter.out.messaging.produce.dto
 
 import com.uahannam.order.domain.OrderStatus
 import java.time.LocalDateTime
 
 data class SaveOrderKafkaDto(
-    val order: Order,
-    val orderItem: List<OrderItem>,
+    val order: OrderEventDto,
+    val orderItem: List<OrderItemEventDto>,
     val orderEvent: OrderEvent
 )
 
-data class Order(
+data class OrderEventDto(
     val orderId: Long,
     val memberId: Long,
     val address: String,
@@ -21,7 +21,7 @@ data class Order(
     val modDate: LocalDateTime
 )
 
-data class OrderItem(
+data class OrderItemEventDto(
     val orderItemId: Long,
     val orderId: Long,
     val itemId: Long,
