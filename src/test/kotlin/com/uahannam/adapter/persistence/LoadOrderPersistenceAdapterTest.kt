@@ -1,6 +1,8 @@
 package com.uahannam.adapter.persistence
 
 import com.appmattus.kotlinfixture.kotlinFixture
+import com.uahannam.common.config.ApplicationEventConfig
+import com.uahannam.common.config.JpaAuditingConfig
 import com.uahannam.common.exception.CustomException
 import com.uahannam.common.exception.ErrorCode.*
 import com.uahannam.common.util.EventProducer
@@ -18,7 +20,7 @@ import org.springframework.context.annotation.Import
 @Import(
     LoadOrderPersistenceAdapter::class,
     CreateOrderPersistenceAdapter::class,
-    EventProducer::class
+    JpaAuditingConfig::class, ApplicationEventConfig::class
 )
 internal class LoadOrderPersistenceAdapterTest(
     val loadOrderPersistenceAdapter: LoadOrderPersistenceAdapter,
