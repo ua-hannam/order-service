@@ -15,6 +15,6 @@ class LoadOrderController(
     @GetMapping("/api/orders/{orderId}")
     fun loadOrderById(@PathVariable("orderId") orderId: Long) =
         ResponseEntity.ok(
-            BaseResponse(loadOrderUseCase.loadOrderById(orderId))
+            BaseResponse.ok(loadOrderUseCase.loadOrderById(orderId))
         )
 }

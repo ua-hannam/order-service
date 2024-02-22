@@ -18,8 +18,6 @@ class CreateOrderController(
     fun createOrder(@RequestBody createOrderCommand: CreateOrderCommand) =
         ResponseEntity.status(CREATED)
             .body(
-                BaseResponse(
-                    createOrderUseCase.createOrder(createOrderCommand)
-                )
+                BaseResponse.created(createOrderUseCase.createOrder(createOrderCommand))
             )
     }

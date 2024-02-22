@@ -15,6 +15,6 @@ class ModifyOrderStatusController(
     @PatchMapping("/api/orders/{orderId}")
     fun modifyOrderStatus(@PathVariable("orderId") orderId: Long) =
         ResponseEntity.ok(
-            BaseResponse(modifyOrderStatusUseCase.modifyOrderStatus(orderId))
+            BaseResponse.ok(modifyOrderStatusUseCase.modifyOrderStatus(orderId))
         )
 }
