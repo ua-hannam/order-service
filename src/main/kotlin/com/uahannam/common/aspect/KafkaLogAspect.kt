@@ -3,12 +3,14 @@ package com.uahannam.common.aspect
 import com.uahannam.common.util.CurrentTimeGenerator
 import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.annotation.AfterReturning
+import org.aspectj.lang.annotation.AfterThrowing
 import org.aspectj.lang.annotation.Aspect
 import org.aspectj.lang.annotation.Before
 import org.aspectj.lang.annotation.Pointcut
 import org.aspectj.lang.reflect.MethodSignature
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
+import java.lang.Exception
 
 @Aspect
 @Component
@@ -42,5 +44,13 @@ class KafkaLogAspect : AbstractLogAspect() {
 
         logger.info("메시지 발송 종료 => {}", CurrentTimeGenerator.generateCurrentTime())
         logger.info("메시지 발송 종료, 종료된 함수 => {}", method.name)
+    }
+
+    @AfterThrowing(pointcut = "kafkaMessagingBeforeExecute()", throwing = "exception")
+    fun loggingAfterThrowingException(joinPoint: JoinPoint, exception: Exception) {
+        val method = extractMethodName(joinPoint)
+
+        logger.error("${method.name}() 처리 중 예외 발생!")
+        logger.error("예외 발생 시간 = {${CurrentTimeGenerator.generateCurrentTime()}}")
     }
 }
