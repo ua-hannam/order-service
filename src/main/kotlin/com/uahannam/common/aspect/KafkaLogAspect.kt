@@ -16,7 +16,7 @@ class KafkaLogAspect : AbstractLogAspect() {
 
     private val logger = LoggerFactory.getLogger(KafkaLogAspect::class.java)
 
-    @Pointcut("execution(* com.uahannam.order.adapter.out.kafka.event.listener..*.*(..))")
+    @Pointcut("execution(* com.uahannam.order.adapter.out.messaging..*.*(..))")
     fun kafkaMessagingBeforeExecute() {  /* 로깅을 위한 Target을 정하는 함수이므로 Body 불필요 */ }
 
     @Before("kafkaMessagingBeforeExecute()")
