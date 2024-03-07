@@ -44,6 +44,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.kafka:spring-kafka")
 
+	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+
 	testImplementation("io.mockk:mockk:${mockkVersion}")
 	testImplementation("com.ninja-squad:springmockk:${springMockVersion}")
 	testImplementation ("com.appmattus.fixture:fixture:${fixtureVersion}")
@@ -68,6 +71,11 @@ sonar {
 	}
 }
 
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:2020.0.4")
+	}
+}
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
